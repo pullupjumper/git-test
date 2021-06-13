@@ -1,90 +1,94 @@
 @import "./root";
 @import "./reset";
 
+$sliderWidth: 540px;
+
 .container {
   width: 100%;
   margin: 0 auto;
 }
 
-main {
+.slider-list-container {
+  display: flex;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 5px 0 60px 0 hsla(0, 0%, 90%, 1);
 
-  .content {
-    position: relative;
-    padding: 32px;
+  .slider-list {
+    display: flex;
+    height: auto;
+    margin-left: 0;
+    transition: all 300ms ease-in-out;
 
-    .hero {
-      position: relative;
-      width: 100%;
-      max-width: 700px;
-      height: auto;
-      margin: 0 auto;
-      padding: 48px;
-      background: url(".././images/pattern-bg.svg") no-repeat center;
-      background-size: contain;
+    &-item {
       overflow: hidden;
 
-      .image-container {
-        display: flex;
-        align-items: center;
+      img {
         width: 100%;
-        max-width: 540px;
-        height: auto;
-        margin: 0 auto;
-
-        .avatar {
-          width: 100%;
-          height: auto;
-          content: url(".././images/image-tanya.jpg");
-          border-radius: 10px;
-          box-shadow: 5px 0 60px 0 hsla(0, 0%, 90%, 1);
-        }
-      }
-    }
-
-    .text {
-      position: relative;
-      margin-top: 40px;
-
-      .quote {
-        position: absolute;
-        top: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 40px;
-        height: 33px;
-        background: url(".././images/pattern-quotes.svg");
-        background-size: contain;
-      }
-
-      p {
-        font-size: var(--fs-300);
-        text-align: center;
-        color: var(--clr-primary-700);
-      }
-
-      .title {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        .name {
-          margin-top: 24px;
-          line-height: 16px;
-          font-size: var(--fw-300);
-          font-weight: var(--fw-700);
-        }
-
-        .job {
-          margin-top: 8px;
-          line-height: 16px;
-          font-size: var(--fw-300);
-          font-weight: var(--fw-300);
-          color: var(--clr-primary-300);
-        }
       }
     }
   }
+}
 
+.content {
+  position: relative;
+  padding: 32px;
+
+  .slider {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    margin: 0 auto;
+    padding: 48px;
+    background: url(".././images/pattern-bg.svg") no-repeat center;
+    background-size: contain;
+    overflow: hidden;
+  }
+
+  .text {
+    position: relative;
+    margin-top: 40px;
+
+    .quote {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 33px;
+      background: url(".././images/pattern-quotes.svg");
+      background-size: contain;
+    }
+
+    .about {
+      font-size: var(--fs-300);
+      text-align: center;
+      color: var(--clr-primary-700);
+    }
+
+    .title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .name {
+        margin-top: 24px;
+        line-height: 16px;
+        font-size: var(--fw-300);
+        font-weight: var(--fw-700);
+      }
+
+      .job {
+        margin-top: 8px;
+        line-height: 16px;
+        font-size: var(--fw-300);
+        font-weight: var(--fw-300);
+        color: var(--clr-primary-300);
+      }
+    }
+  }
 }
 
 .btn {
@@ -117,7 +121,6 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  //max-height: 75px;
   height: 88px;
   background: url(".././images/pattern-curve.svg") no-repeat;
   background-size: contain;
@@ -125,6 +128,18 @@ footer {
 }
 
 @media (min-width: 415px) {
+  .slider-list-container {
+    width: $sliderWidth/2;
+
+    .slider-list {
+      width: ($sliderWidth)/2*3;
+
+      &-item {
+        width: $sliderWidth/2;
+      }
+    }
+  }
+
   .btn {
     bottom: 25px;
     padding: 16px;
@@ -148,35 +163,47 @@ footer {
     max-width: 1440px;
   }
 
-  main {
-    .content {
-      .text {
+  .content {
+    .text {
 
-        .quote {
-          top: -64px;
-          width: 120px;
-          height: 100px;
-        }
-
-        p {
-          line-height: 40px;
-          font-size: var(--fs-600);
-
-        }
-
-        .title {
-
-          .name {
-            font-size: var(--fs-600);
-          }
-
-          .job {
-            margin-top: 24px;
-            font-size: var(--fs-600);
-          }
-        }
+      .quote {
+        top: -64px;
+        width: 120px;
+        height: 100px;
       }
 
+      .about {
+        line-height: 40px;
+        font-size: var(--fs-600);
+
+      }
+
+      .title {
+
+        .name {
+          font-size: var(--fs-600);
+        }
+
+        .job {
+          margin-top: 24px;
+          font-size: var(--fs-600);
+        }
+      }
+    }
+
+  }
+}
+
+@media (min-width: 768px) {
+  .slider-list-container {
+    width: $sliderWidth;
+
+    .slider-list {
+      width: $sliderWidth*3;
+
+      &-item {
+        width: $sliderWidth;
+      }
     }
   }
 }
@@ -190,54 +217,63 @@ footer {
     left: 30%;
   }
 
-  main {
-    .content {
-      top: 50%;
-      width: 100%;
+  .slider-list-container {
+    width: $sliderWidth;
+
+    .slider-list {
+      width: $sliderWidth*3;
+
+      &-item {
+        width: $sliderWidth;
+      }
+    }
+  }
+
+  .content {
+    top: 50%;
+    width: 100%;
+    display: flex;
+    padding: 0 100px;
+    flex-direction: row;
+    transform: translateY(-50%);
+
+    .slider {
       display: flex;
-      padding: 0 100px;
-      flex-direction: row;
+      margin-right: 0;
+      margin-left: auto;
+    }
+
+    .text {
+      position: absolute;
+      top: 50%;
       transform: translateY(-50%);
+      width: 50%;
+      z-index: 1;
 
-      .hero {
-        display: flex;
-        margin-right: 0;
-        margin-left: auto;
+      .quote {
+        left: 24%;
       }
 
-      .text {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 50%;
-        z-index: 1;
-
-        .quote {
-          left: 24%;
-        }
-
-        p {
-          text-align: left;
-        }
-
-        .title {
-          margin-top: 32px;
-          flex-direction: row;
-          align-items: left;
-
-          .name {
-            margin-top: 0;
-            margin-right: 24px;
-            line-height: 32px;
-          }
-
-          .job {
-            margin-top: 0;
-            line-height: 32px;
-          }
-        }
+      .about {
+        text-align: left;
       }
 
+      .title {
+        margin-top: 32px;
+        flex-direction: row;
+        align-items: left;
+
+        .name {
+          margin-top: 0;
+          margin-right: 24px;
+          line-height: 32px;
+        }
+
+        .job {
+          margin-top: 0;
+          line-height: 32px;
+        }
+      }
     }
   }
 
